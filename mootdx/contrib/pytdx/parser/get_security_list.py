@@ -8,7 +8,6 @@ from pytdx.parser.base import BaseParser
 
 
 class GetSecurityList(BaseParser):
-
     def setParams(self, market, start):
         pkg = bytearray.fromhex(u'0c 01 18 64 01 01 06 00 06 00 50 04')
         pkg_param = struct.pack("<HH", market, start)
@@ -17,7 +16,7 @@ class GetSecurityList(BaseParser):
 
     def parseResponse(self, body_buf):
         pos = 0
-        (num,) = struct.unpack("<H", body_buf[:2])
+        (num, ) = struct.unpack("<H", body_buf[:2])
         pos += 2
         stocks = []
         for i in range(num):

@@ -29,7 +29,6 @@ b1cb74000c1f1876006f100091009100010000303030303031b884ce4912000100bcc6330103cf2f
 
 
 class GetFinanceInfo(BaseParser):
-
     def setParams(self, market, code):
         if type(code) is six.text_type:
             code = code.encode("utf-8")
@@ -45,12 +44,13 @@ class GetFinanceInfo(BaseParser):
 
         (liutongguben, province, industry, updated_date, ipo_date, zongguben,
          guojiagu, faqirenfarengu, farengu, bgu, hgu, zhigonggu, zongzichan,
-         liudongzichan, gudingzichan, wuxingzichan, gudongrenshu, liudongfuzhai,
-         changqifuzhai, zibengongjijin, jingzichan, zhuyingshouru, zhuyinglirun,
-         yingshouzhangkuan, yingyelirun, touzishouyu, jingyingxianjinliu,
-         zongxianjinliu, cunhuo, lirunzonghe, shuihoulirun, jinglirun,
-         weifenlirun, baoliu1, baoliu2) = struct.unpack(
-             "<fHHIIffffffffffffffffffffffffffffff", body_buf[pos:])
+         liudongzichan, gudingzichan, wuxingzichan, gudongrenshu,
+         liudongfuzhai, changqifuzhai, zibengongjijin, jingzichan,
+         zhuyingshouru, zhuyinglirun, yingshouzhangkuan, yingyelirun,
+         touzishouyu, jingyingxianjinliu, zongxianjinliu, cunhuo, lirunzonghe,
+         shuihoulirun, jinglirun, weifenlirun, baoliu1,
+         baoliu2) = struct.unpack("<fHHIIffffffffffffffffffffffffffffff",
+                                  body_buf[pos:])
 
         def _get_v(v):
             return v

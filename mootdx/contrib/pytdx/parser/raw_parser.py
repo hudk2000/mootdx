@@ -6,7 +6,6 @@ from pytdx.parser.base import BaseParser
 
 
 class RawParser(BaseParser):
-
     def setParams(self, pkg):
         self.send_pkg = pkg
 

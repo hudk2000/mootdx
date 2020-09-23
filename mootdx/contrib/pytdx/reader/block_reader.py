@@ -15,7 +15,6 @@ BlockReader_TYPE_GROUP = 1
 
 
 class BlockReader(BaseReader):
-
     def get_df(self, fname, result_type=BlockReader_TYPE_FLAT):
         result = self.get_data(fname, result_type)
         return pd.DataFrame(result)
@@ -31,7 +30,7 @@ class BlockReader(BaseReader):
             data = fname
 
         pos = 384
-        (num,) = struct.unpack("<H", data[pos:pos + 2])
+        (num, ) = struct.unpack("<H", data[pos:pos + 2])
         pos += 2
         for i in range(num):
             blockname_raw = data[pos:pos + 9]
@@ -75,7 +74,6 @@ class BlockReader(BaseReader):
 
 
 class CustomerBlockReader(BaseReader):
-
     def get_df(self, fname, result_type=BlockReader_TYPE_FLAT):
         result = self.get_data(fname, result_type)
         return pd.DataFrame(result)
@@ -98,7 +96,8 @@ class CustomerBlockReader(BaseReader):
         result = []
         # print(block_data.decode('gbk','ignore'))
         while pos < len(block_data):
-            n1 = block_data[pos:pos + 50].decode('gbk', 'ignore').rstrip("\x00")
+            n1 = block_data[pos:pos + 50].decode('gbk',
+                                                 'ignore').rstrip("\x00")
             n2 = block_data[pos + 50:pos + 120].decode('gbk',
                                                        'ignore').rstrip("\x00")
             pos = pos + 120

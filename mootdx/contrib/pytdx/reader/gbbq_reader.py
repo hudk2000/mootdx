@@ -10,7 +10,6 @@ import pandas as pd
 ### take ref this article :http://blog.csdn.net/fangle6688/article/details/50956609
 ### and this http://blog.sina.com.cn/s/blog_6b2f87db0102uxo3.html
 class GbbqReader(object):
-
     def get_df(self, fname):
         if sys.version_info.major == 2:
             bin_keys = bytearray.fromhex(self.hexdump_keys)
@@ -20,7 +19,7 @@ class GbbqReader(object):
         with open(fname, "rb") as f:
             content = f.read()
             pos = 0
-            (count,) = struct.unpack("<I", content[pos:pos + 4])
+            (count, ) = struct.unpack("<I", content[pos:pos + 4])
             pos += 4
             encrypt_data = content
             # data_len = len(encrypt_data)
@@ -29,33 +28,36 @@ class GbbqReader(object):
             for _ in range(count):
                 clear_data = bytearray()
                 for i in range(3):
-                    (eax,) = struct.unpack("<I", bin_keys[0x44:0x44 + 4])
-                    (ebx,) = struct.unpack(
+                    (eax, ) = struct.unpack("<I", bin_keys[0x44:0x44 + 4])
+                    (ebx, ) = struct.unpack(
                         "<I", encrypt_data[data_offset:data_offset + 4])
                     num = c_uint32(eax ^ ebx).value
-                    (numold,) = struct.unpack(
+                    (numold, ) = struct.unpack(
                         "<I",
                         encrypt_data[data_offset + 0x4:data_offset + 0x4 + 4])
                     for j in reversed(range(4, 0x40 + 4, 4)):
                         ebx = (num & 0xff0000) >> 16
-                        (eax,) = struct.unpack(
-                            "<I", bin_keys[ebx * 4 + 0x448:ebx * 4 + 0x448 + 4])
+                        (eax, ) = struct.unpack(
+                            "<I",
+                            bin_keys[ebx * 4 + 0x448:ebx * 4 + 0x448 + 4])
                         ebx = num >> 24
-                        (eax_add,) = struct.unpack(
+                        (eax_add, ) = struct.unpack(
                             "<I", bin_keys[ebx * 4 + 0x48:ebx * 4 + 0x48 + 4])
                         eax += eax_add
                         eax = c_uint32(eax).value
                         ebx = (num & 0xff00) >> 8
-                        (eax_xor,) = struct.unpack(
-                            "<I", bin_keys[ebx * 4 + 0x848:ebx * 4 + 0x848 + 4])
+                        (eax_xor, ) = struct.unpack(
+                            "<I",
+                            bin_keys[ebx * 4 + 0x848:ebx * 4 + 0x848 + 4])
                         eax ^= eax_xor
                         eax = c_uint32(eax).value
                         ebx = num & 0xff
-                        (eax_add,) = struct.unpack(
-                            "<I", bin_keys[ebx * 4 + 0xC48:ebx * 4 + 0xC48 + 4])
+                        (eax_add, ) = struct.unpack(
+                            "<I",
+                            bin_keys[ebx * 4 + 0xC48:ebx * 4 + 0xC48 + 4])
                         eax += eax_add
                         eax = c_uint32(eax).value
-                        (eax_xor,) = struct.unpack("<I", bin_keys[j:j + 4])
+                        (eax_xor, ) = struct.unpack("<I", bin_keys[j:j + 4])
                         eax ^= eax_xor
                         eax = c_uint32(eax).value
                         ebx = num
@@ -63,7 +65,7 @@ class GbbqReader(object):
                         num = c_uint32(num).value
                         numold = ebx
 
-                    (numold_op,) = struct.unpack("<I", bin_keys[0:4])
+                    (numold_op, ) = struct.unpack("<I", bin_keys[0:4])
                     numold ^= numold_op
                     numold = c_uint32(numold).value
                     clear_data.extend(struct.pack("<II", numold, num))
@@ -81,8 +83,9 @@ class GbbqReader(object):
         df = pd.DataFrame(data=result,
                           columns=[
                               'market', 'code', 'datetime', 'category',
-                              'hongli_panqianliutong', 'peigujia_qianzongguben',
-                              'songgu_qianzongguben', 'peigu_houzongguben'
+                              'hongli_panqianliutong',
+                              'peigujia_qianzongguben', 'songgu_qianzongguben',
+                              'peigu_houzongguben'
                           ])
         return df
 

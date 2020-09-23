@@ -20,7 +20,6 @@ OrderedDict([('market', 29),
 
 
 class GetInstrumentQuoteList(BaseParser):
-
     def setParams(self, market, category, start, count):
         pkg = bytearray.fromhex("01 c1 06 0b 00 02 0b 00 0b 00 00 24")
         pkg.extend(struct.pack("<BHHHH", market, 0, start, count, 1))
@@ -30,7 +29,7 @@ class GetInstrumentQuoteList(BaseParser):
     def parseResponse(self, body_buf):
 
         pos = 0
-        (num,) = struct.unpack('<H', body_buf[pos:pos + 2])
+        (num, ) = struct.unpack('<H', body_buf[pos:pos + 2])
         pos += 2
 
         if num == 0:
@@ -49,8 +48,8 @@ class GetInstrumentQuoteList(BaseParser):
             pos += 10
             if self.category == 3:
                 try:
-                    pos = self.extract_futures(market, code, body_buf, datalist,
-                                               pos)
+                    pos = self.extract_futures(market, code, body_buf,
+                                               datalist, pos)
                 except Exception as e:
                     print(e)
                 print(pos)
@@ -157,16 +156,17 @@ class GetInstrumentQuoteList(BaseParser):
 
         (BiShu, ZuoJie, JinKai, ZuiGao, ZuiDi, MaiChu, KaiCang, _, ZongLiang,
          XianLiang, ZongJinE, NeiPan, WaiPan, _, ChiCangLiang, MaiRuJia, _, _,
-         _, _, MaiRuLiang, _, _, _, _, MaiChuJia, _, _, _, _, MaiChuLiang, _, _,
-         _, _) = struct.unpack(data_pack_format, body_buf[pos:pos + 140])
+         _, _, MaiRuLiang, _, _, _, _, MaiChuJia, _, _, _, _, MaiChuLiang, _,
+         _, _, _) = struct.unpack(data_pack_format, body_buf[pos:pos + 140])
         pos += 290
-        one = OrderedDict([("market", market), ("code", code), ("BiShu", BiShu),
-                           ("ZuoJie", ZuoJie), ("JinKai", JinKai),
-                           ("ZuiGao", ZuiGao), ("ZuiDi", ZuiDi),
-                           ("MaiChu", MaiChu), ("KaiCang", KaiCang),
-                           ("ZongLiang", ZongLiang), ("XianLiang", XianLiang),
-                           ("ZongJinE", ZongJinE), ("NeiPan", NeiPan),
-                           ("WaiPan", WaiPan), ("ChiCangLiang", ChiCangLiang),
+        one = OrderedDict([("market", market), ("code", code),
+                           ("BiShu", BiShu), ("ZuoJie", ZuoJie),
+                           ("JinKai", JinKai), ("ZuiGao", ZuiGao),
+                           ("ZuiDi", ZuiDi), ("MaiChu", MaiChu),
+                           ("KaiCang", KaiCang), ("ZongLiang", ZongLiang),
+                           ("XianLiang", XianLiang), ("ZongJinE", ZongJinE),
+                           ("NeiPan", NeiPan), ("WaiPan", WaiPan),
+                           ("ChiCangLiang", ChiCangLiang),
                            ("MaiRuJia", MaiRuJia), ("MaiRuLiang", MaiRuLiang),
                            ("MaiChuJia", MaiChuJia),
                            ("MaiChuLiang", MaiChuLiang)])

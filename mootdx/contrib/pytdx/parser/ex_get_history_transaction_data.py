@@ -8,7 +8,6 @@ from pytdx.parser.base import BaseParser
 
 
 class GetHistoryTransactionData(BaseParser):
-
     def setParams(self, market, code, date, start, count):
         # if type(code) is six.text_type:
         code = code.encode("utf-8")
@@ -111,7 +110,8 @@ class GetHistoryTransactionData(BaseParser):
                     ("volume", volume),
                     ("zengcang", zengcang),
                     ("natrue_name", nature_name),
-                    ("nature_name", nature_name
+                    (
+                        "nature_name", nature_name
                     ),  # 修正了nature_name的拼写错误(natrue), 为了保持兼容性，原有的natrue_name还会保留一段时间
                     ("direction", direction),
                     ("nature", nature),
@@ -127,6 +127,7 @@ if __name__ == '__main__':
     with api.connect('121.14.110.210', 7727):
         # print(api.to_df(api.get_history_transaction_data(4, 'SR61099D', 20171025))[["date","price","volume",'zengcang','nature','t1','t2']])
 
-        print(api.to_df(api.get_history_transaction_data(47, 'IFL0', 20170811)))
+        print(api.to_df(api.get_history_transaction_data(47, 'IFL0',
+                                                         20170811)))
         # print(api.to_df(api.get_history_transaction_data(31,  "01918", 20171026))[["date","price","volume",'zengcang','nature']])
         # api.to_df(api.get_history_transaction_data(47, 'IFL0', 20170810)).to_excel('//Users//wy//data//iflo.xlsx')

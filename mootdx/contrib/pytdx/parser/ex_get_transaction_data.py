@@ -9,7 +9,6 @@ from pytdx.parser.base import BaseParser
 
 
 class GetTransactionData(BaseParser):
-
     def setParams(self, market, code, start, count):
         if type(code) is six.text_type:
             code = code.encode("utf-8")

@@ -13,7 +13,6 @@ from pytdx.reader.base_reader import TdxFileNotFoundException
 
 
 class TdxExHqDailyBarReader(BaseReader):
-
     def __init__(self, vipdoc_path=None):
         self.vipdoc_path = vipdoc_path
 
@@ -49,7 +48,7 @@ class TdxExHqDailyBarReader(BaseReader):
         t_date = str(row[0])
         datestr = t_date[:4] + "-" + t_date[4:6] + "-" + t_date[6:]
 
-        (hk_stock_amount,) = struct.unpack('<f', struct.pack('<I', row[5]))
+        (hk_stock_amount, ) = struct.unpack('<f', struct.pack('<I', row[5]))
         new_row = (datestr, row[1], row[2], row[3], row[4], row[5], row[6],
                    row[7], hk_stock_amount)
 

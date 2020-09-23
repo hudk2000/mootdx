@@ -11,7 +11,6 @@ DEFAULT_HEARTBEAT_INTERVAL = 10.0  # 10秒一个heartbeat
 
 
 class HqHeartBeatThread(Thread):
-
     def __init__(self,
                  api,
                  stop_event,

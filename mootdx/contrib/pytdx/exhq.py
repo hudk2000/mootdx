@@ -45,7 +45,6 @@ Out[8]: 64.0
 
 
 class TdxExHq_API(BaseSocketClient):
-
     def setup(self):
         ExSetupCmd1(self.client).call_api()
 

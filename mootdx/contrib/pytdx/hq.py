@@ -38,12 +38,11 @@ except ImportError:
     from collections import Iterable
 
 if __name__ == '__main__':
-    sys.path.append(os.path.dirname(os.path.dirname(
-        os.path.realpath(__file__))))
+    sys.path.append(
+        os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 
 
 class TdxHq_API(BaseSocketClient):
-
     def setup(self):
         SetupCmd1(self.client).call_api()
         SetupCmd2(self.client).call_api()

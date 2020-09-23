@@ -12,7 +12,6 @@ class TdxFunctionCallError(Exception):
     """
     当行数调用出错的时候
     """
-
     def __init__(self, *args, **kwargs):
         super(TdxFunctionCallError, self).__init__(*args, **kwargs)
         self.original_exception = None

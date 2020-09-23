@@ -9,7 +9,6 @@ from pytdx.parser.base import BaseParser
 
 
 class GetHistoryInstrumentBarsRange(BaseParser):
-
     def __init__(self, *args, **kvargs):
         self.seqid = 1
         BaseParser.__init__(self, *args, **kvargs)
@@ -54,7 +53,7 @@ class GetHistoryInstrumentBarsRange(BaseParser):
         # 算了，前面不解析了，没太大用
         # (market, code) = struct.unpack("<B9s", body_buf[0: 10]
 
-        (ret_count,) = struct.unpack("H", body_buf[pos:pos + 2])
+        (ret_count, ) = struct.unpack("H", body_buf[pos:pos + 2])
         pos = pos + 2
         # print(hexdump.hexdump(body_buf[20:52]))
         # print(hexdump.hexdump(body_buf[20: 20+ret_count*32]))

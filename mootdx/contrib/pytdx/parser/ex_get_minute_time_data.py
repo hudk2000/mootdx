@@ -22,7 +22,6 @@ tradex 结果
 
 
 class GetMinuteTimeData(BaseParser):
-
     def setParams(self, market, code):
         pkg = bytearray.fromhex("01 07 08 00 01 01 0c 00 0c 00 0b 24")
         code = code.encode("utf-8")

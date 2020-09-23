@@ -9,7 +9,6 @@ from pytdx.parser.base import BaseParser
 
 
 class GetTransactionData(BaseParser):
-
     def setParams(self, market, code, start, count):
         if type(code) is six.text_type:
             code = code.encode("utf-8")
@@ -19,7 +18,7 @@ class GetTransactionData(BaseParser):
 
     def parseResponse(self, body_buf):
         pos = 0
-        (num,) = struct.unpack("<H", body_buf[:2])
+        (num, ) = struct.unpack("<H", body_buf[:2])
         pos += 2
         ticks = []
         last_price = 0

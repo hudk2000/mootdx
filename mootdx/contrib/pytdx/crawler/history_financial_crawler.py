@@ -20,7 +20,6 @@ https://github.com/rainx/pytdx/issues/133
 
 
 class HistoryFinancialListCrawler(BaseCralwer):
-
     def __init__(self):
         self.mode = "content"
 
@@ -63,7 +62,6 @@ class HistoryFinancialListCrawler(BaseCralwer):
 
 
 class HistoryFinancialCrawler(BaseCralwer):
-
     def __init__(self):
         self.mode = "content"
 

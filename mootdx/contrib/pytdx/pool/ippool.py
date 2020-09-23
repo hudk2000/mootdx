@@ -19,7 +19,6 @@ ips 应该还是一个 (ip ,port) 对的列表，如
 
 
 class BaseIPPool(object):
-
     def __init__(self, hq_class):
         self.hq_class = hq_class
 
@@ -40,7 +39,6 @@ class RandomIPPool(BaseIPPool):
     """
     获取一个随机的优先级列表
     """
-
     def __init__(self, hq_class, ips):
         """
         :param ips: ip should be a list
@@ -66,7 +64,6 @@ class AvailableIPPool(BaseIPPool):
     测试可连接性，并根据连接速度排序
     我们启动一个新的线程，周期性的进行更新
     """
-
     def __init__(self, hq_class, ips):
         super(AvailableIPPool, self).__init__(hq_class)
         self.ips = ips

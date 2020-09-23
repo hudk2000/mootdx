@@ -7,7 +7,6 @@ from pytdx.reader.base_reader import BaseReader
 
 
 class HistoryFinancialReader(BaseReader):
-
     def get_df(self, data_file):
         """
         读取历史财务数据文件，并返回pandas结果 ， 类似gpcw20171231.zip格式，具体字段含义参考

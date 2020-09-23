@@ -30,7 +30,6 @@ class GetInstrumentBars(BaseParser):
     ﻿0000   ff 23 08 31 30 30 30 30 38 34 33 13 04 00 01 00  .#.10000843.....
     0010   00 00 00 00 f0 00                                ......
     """
-
     def setup(self):
         pass
         # self.client.send(bytearray.fromhex('01 01 08 6a 01 01 16 00 16 00'))
@@ -58,7 +57,7 @@ class GetInstrumentBars(BaseParser):
         # 算了，前面不解析了，没太大用
         # (market, code) = struct.unpack("<B9s", body_buf[0: 10])
         pos += 18
-        (ret_count,) = struct.unpack('<H', body_buf[pos:pos + 2])
+        (ret_count, ) = struct.unpack('<H', body_buf[pos:pos + 2])
         pos += 2
 
         klines = []
@@ -68,7 +67,7 @@ class GetInstrumentBars(BaseParser):
                 self.category, body_buf, pos)
             (open_price, high, low, close, position, trade,
              price) = struct.unpack("<ffffIIf", body_buf[pos:pos + 28])
-            (amount,) = struct.unpack("f", body_buf[pos + 16:pos + 16 + 4])
+            (amount, ) = struct.unpack("f", body_buf[pos + 16:pos + 16 + 4])
 
             pos += 28
             kline = OrderedDict([

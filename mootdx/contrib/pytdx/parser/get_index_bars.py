@@ -25,7 +25,6 @@ bytearray(b'\xa8\xa9\xa4I\x10R\rR') = 1348917 151741792256.00000
 
 
 class GetIndexBarsCmd(BaseParser):
-
     def setParams(self, category, market, code, start, count):
         if type(code) is six.text_type:
             code = code.encode("utf-8")
@@ -55,7 +54,7 @@ class GetIndexBarsCmd(BaseParser):
     def parseResponse(self, body_buf):
         pos = 0
 
-        (ret_count,) = struct.unpack("<H", body_buf[0:2])
+        (ret_count, ) = struct.unpack("<H", body_buf[0:2])
         pos += 2
 
         klines = []
@@ -71,15 +70,16 @@ class GetIndexBarsCmd(BaseParser):
             price_high_diff, pos = get_price(body_buf, pos)
             price_low_diff, pos = get_price(body_buf, pos)
 
-            (vol_raw,) = struct.unpack("<I", body_buf[pos:pos + 4])
+            (vol_raw, ) = struct.unpack("<I", body_buf[pos:pos + 4])
             vol = get_volume(vol_raw)
 
             pos += 4
-            (dbvol_raw,) = struct.unpack("<I", body_buf[pos:pos + 4])
+            (dbvol_raw, ) = struct.unpack("<I", body_buf[pos:pos + 4])
             dbvol = get_volume(dbvol_raw)
             pos += 4
 
-            (up_count, down_count) = struct.unpack("<HH", body_buf[pos:pos + 4])
+            (up_count, down_count) = struct.unpack("<HH",
+                                                   body_buf[pos:pos + 4])
             pos += 4
 
             open = self._cal_price1000(price_open_diff, pre_diff_base)

@@ -13,7 +13,6 @@ from pytdx.reader.base_reader import TdxFileNotFoundException, TdxNotAssignVipdo
 
 
 class TdxDailyBarReader(BaseReader):
-
     def __init__(self, vipdoc_path=None):
 
         self.vipdoc_path = vipdoc_path

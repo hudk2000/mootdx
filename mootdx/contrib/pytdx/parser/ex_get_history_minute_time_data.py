@@ -7,7 +7,6 @@ from pytdx.parser.base import BaseParser
 
 
 class GetHistoryMinuteTimeData(BaseParser):
-
     def setParams(self, market, code, date):
         pkg = bytearray.fromhex("01 01 30 00 01 01 10 00 10 00 0c 24")
         code = code.encode("utf-8")

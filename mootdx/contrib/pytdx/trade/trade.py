@@ -61,7 +61,6 @@ class TdxTradeApiParams:
 
 
 class TdxTradeApi(object):
-
     def __init__(self,
                  endpoint="http://127.0.0.1:10092/api",
                  encoding="utf-8",
@@ -205,7 +204,10 @@ class TdxTradeApi(object):
         })
 
     def get_quotes(self, client_id, codes):
-        return self.call("get_quotes", {'client_id': client_id, 'zqdms': codes})
+        return self.call("get_quotes", {
+            'client_id': client_id,
+            'zqdms': codes
+        })
 
     def send_orders(self, client_id, orders):
         """

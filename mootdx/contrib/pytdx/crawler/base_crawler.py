@@ -15,7 +15,6 @@ def demo_reporthook(downloaded, total_size):
 
 
 class BaseCralwer:
-
     def __init__(self, mode="http"):
         self.mode = "http"
 

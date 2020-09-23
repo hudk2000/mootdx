@@ -9,7 +9,6 @@ from pytdx.parser.base import BaseParser
 
 
 class GetSecurityQuotesCmd(BaseParser):
-
     def setParams(self, all_stock):
         """
          :param all_stock: 一个包含 (market, code) 元组的列表， 如 [ (0, '000001'), (1, '600001') ]
@@ -46,7 +45,7 @@ class GetSecurityQuotesCmd(BaseParser):
     def parseResponse(self, body_buf):
         pos = 0
         pos += 2  # skip b1 cb
-        (num_stock,) = struct.unpack("<H", body_buf[pos:pos + 2])
+        (num_stock, ) = struct.unpack("<H", body_buf[pos:pos + 2])
         pos += 2
         stocks = []
 
@@ -79,7 +78,7 @@ class GetSecurityQuotesCmd(BaseParser):
             # assert (reversed_bytes1 == -price)
             vol, pos = get_price(body_buf, pos)
             cur_vol, pos = get_price(body_buf, pos)
-            (amount_raw,) = struct.unpack("<I", body_buf[pos:pos + 4])
+            (amount_raw, ) = struct.unpack("<I", body_buf[pos:pos + 4])
             amount = get_volume(amount_raw)
             pos += 4
             s_vol, pos = get_price(body_buf, pos)
@@ -202,5 +201,5 @@ if __name__ == '__main__':
     api = TdxHq_API()
     with api.connect():
         # print(api.to_df(api.get_security_quotes([(0, '102672'), (0, '002672')])))
-        print(api.to_df(api.get_security_quotes([(0, '101612'),
-                                                 (0, '002672')])))
+        print(
+            api.to_df(api.get_security_quotes([(0, '101612'), (0, '002672')])))

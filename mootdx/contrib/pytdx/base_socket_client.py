@@ -46,7 +46,6 @@ Out[8]: 64.0
 
 
 def update_last_ack_time(func):
-
     @functools.wraps(func)
     def wrapper(self, *args, **kw):
         self.last_ack_time = time.time()
@@ -68,8 +67,9 @@ def update_last_ack_time(func):
                             return ret
                     except Exception as retry_e:
                         current_exception = retry_e
-                        log.debug("hit exception on *retry* req exception is " +
-                                  str(retry_e))
+                        log.debug(
+                            "hit exception on *retry* req exception is " +
+                            str(retry_e))
 
                 log.debug("perform auto retry on req ")
 
@@ -89,7 +89,6 @@ def update_last_ack_time(func):
 
 
 class RetryStrategy(object):
-
     @classmethod
     def gen(cls):
         raise NotImplementedError("need to override")
@@ -101,7 +100,6 @@ class DefaultRetryStrategy(RetryStrategy):
     返回下次重试的间隔时间, 单位为秒，我们会使用 time.sleep在这里同步等待之后进行重新connect,然后再重新发起
     源请求，直到gen结束。
     """
-
     @classmethod
     def gen(cls):
         # 默认重试4次 ... 时间间隔如下
@@ -113,7 +111,6 @@ class TrafficStatSocket(socket.socket):
     """
     实现支持流量统计的socket类
     """
-
     def __init__(self, sock, mode):
         super(TrafficStatSocket, self).__init__(sock, mode)
         # 流量统计相关
@@ -128,7 +125,6 @@ class TrafficStatSocket(socket.socket):
 
 
 class BaseSocketClient(object):
-
     def __init__(self,
                  multithread=False,
                  heartbeat=False,

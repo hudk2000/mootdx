@@ -18,7 +18,6 @@ recv: b1cb74000c01086401002d05aa00aa000a006ec73301b28c011e3254a081ad4816d6984d6f
 
 
 class GetSecurityBarsCmd(BaseParser):
-
     def setParams(self, category, market, code, start, count):
         if type(code) is six.text_type:
             code = code.encode("utf-8")
@@ -48,7 +47,7 @@ class GetSecurityBarsCmd(BaseParser):
     def parseResponse(self, body_buf):
         pos = 0
 
-        (ret_count,) = struct.unpack("<H", body_buf[0:2])
+        (ret_count, ) = struct.unpack("<H", body_buf[0:2])
         pos += 2
 
         klines = []
@@ -64,11 +63,11 @@ class GetSecurityBarsCmd(BaseParser):
             price_high_diff, pos = get_price(body_buf, pos)
             price_low_diff, pos = get_price(body_buf, pos)
 
-            (vol_raw,) = struct.unpack("<I", body_buf[pos:pos + 4])
+            (vol_raw, ) = struct.unpack("<I", body_buf[pos:pos + 4])
             vol = get_volume(vol_raw)
 
             pos += 4
-            (dbvol_raw,) = struct.unpack("<I", body_buf[pos:pos + 4])
+            (dbvol_raw, ) = struct.unpack("<I", body_buf[pos:pos + 4])
             dbvol = get_volume(dbvol_raw)
             pos += 4
 

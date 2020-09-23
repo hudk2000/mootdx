@@ -7,7 +7,6 @@ from pytdx.parser.base import BaseParser
 
 
 class GetCompanyInfoContent(BaseParser):
-
     def setParams(self, market, code, filename, start, length):
         if type(code) is six.text_type:
             code = code.encode("utf-8")

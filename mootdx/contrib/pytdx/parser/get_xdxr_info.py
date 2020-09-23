@@ -56,7 +56,6 @@ XDXR_CATEGORY_MAPPING = {
 
 
 class GetXdXrInfo(BaseParser):
-
     def setParams(self, market, code):
         if type(code) is six.text_type:
             code = code.encode("utf-8")
@@ -71,7 +70,7 @@ class GetXdXrInfo(BaseParser):
             return []
 
         pos += 9  # skip 9
-        (num,) = struct.unpack("<H", body_buf[pos:pos + 2])
+        (num, ) = struct.unpack("<H", body_buf[pos:pos + 2])
         pos += 2
 
         rows = []
@@ -87,8 +86,9 @@ class GetXdXrInfo(BaseParser):
             pos += 7
             # noused = struct.unpack(u"<B", body_buf[pos: pos+1])
             pos += 1  # skip a byte
-            year, month, day, hour, minite, pos = get_datetime(9, body_buf, pos)
-            (category,) = struct.unpack(u"<B", body_buf[pos:pos + 1])
+            year, month, day, hour, minite, pos = get_datetime(
+                9, body_buf, pos)
+            (category, ) = struct.unpack(u"<B", body_buf[pos:pos + 1])
             pos += 1
 
             # b'\x00\xe8\x00G' => 33000.00000

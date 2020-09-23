@@ -42,7 +42,6 @@ RSP_HEADER_LEN = 0x10
 
 
 class BaseParser(object):
-
     def __init__(self, client, lock=None):
         self.client = client
         self.data = None

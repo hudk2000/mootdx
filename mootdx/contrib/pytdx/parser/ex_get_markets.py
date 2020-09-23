@@ -7,14 +7,14 @@ from pytdx.parser.base import BaseParser
 
 
 class GetMarkets(BaseParser):
-
     def setup(self):
-        self.send_pkg = bytearray.fromhex("01 02 48 69 00 01 02 00 02 00 f4 23")
+        self.send_pkg = bytearray.fromhex(
+            "01 02 48 69 00 01 02 00 02 00 f4 23")
 
     def parseResponse(self, body_buf):
 
         pos = 0
-        (cnt,) = struct.unpack("<H", body_buf[pos:pos + 2])
+        (cnt, ) = struct.unpack("<H", body_buf[pos:pos + 2])
         pos += 2
 
         result = []

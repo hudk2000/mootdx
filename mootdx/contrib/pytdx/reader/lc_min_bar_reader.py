@@ -22,7 +22,6 @@ class TdxLCMinBarReader(BaseReader):
     """
     读取通达信分钟数据
     """
-
     def parse_data_by_file(self, fname):
         if not os.path.isfile(fname):
             raise TdxFileNotFoundException(

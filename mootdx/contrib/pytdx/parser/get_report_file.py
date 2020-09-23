@@ -6,7 +6,6 @@ from pytdx.parser.base import BaseParser
 
 
 class GetReportFile(BaseParser):
-
     def setParams(self, filename, offset=0):
         pkg = bytearray.fromhex(u'0C 12 34 00 00 00')
         # Fom DTGear request.py file
@@ -20,7 +19,7 @@ class GetReportFile(BaseParser):
         self.send_pkg = pkg
 
     def parseResponse(self, body_buf):
-        (chunksize,) = struct.unpack("<I", body_buf[:4])
+        (chunksize, ) = struct.unpack("<I", body_buf[:4])
 
         if chunksize > 0:
             return {"chunksize": chunksize, "chunkdata": body_buf[4:]}

@@ -61,7 +61,6 @@ my result:
 
 
 class GetInstrumentQuote(BaseParser):
-
     def setParams(self, market, code):
         pkg = bytearray.fromhex("01 01 08 02 02 01 0c 00 0c 00 fa 23")
         code = code.encode("utf-8")
@@ -82,8 +81,8 @@ class GetInstrumentQuote(BaseParser):
         ## 持仓 ((13340,), 66),
 
         (pre_close, open_price, high, low, price, kaicang, _, zongliang,
-         xianliang, _, neipan, waipai, _, chicang, b1, b2, b3, b4, b5, bv1, bv2,
-         bv3, bv4, bv5, a1, a2, a3, a4, a5, av1, av2, av3, av4,
+         xianliang, _, neipan, waipai, _, chicang, b1, b2, b3, b4, b5, bv1,
+         bv2, bv3, bv4, bv5, a1, a2, a3, a4, a5, av1, av2, av3, av4,
          av5) = struct.unpack('<fffffIIIIIIIIIfffffIIIIIfffffIIIII',
                               body_buf[pos:pos + 136])
 

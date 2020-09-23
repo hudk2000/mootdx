@@ -23,7 +23,6 @@ class GetInstrumentInfo(BaseParser):
     Out[9]: 2
 
     """
-
     def setParams(self, start, count=100):
         pkg = bytearray.fromhex("01 04 48 67 00 01 08 00 08 00 f5 23")
         pkg.extend(struct.pack('<IH', start, count))

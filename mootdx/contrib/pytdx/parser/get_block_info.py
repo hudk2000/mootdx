@@ -8,7 +8,6 @@ from pytdx.reader.block_reader import BlockReader, BlockReader_TYPE_FLAT
 
 
 class GetBlockInfoMeta(BaseParser):
-
     def setParams(self, block_file):
         if type(block_file) is six.text_type:
             block_file = block_file.encode("utf-8")
@@ -22,7 +21,6 @@ class GetBlockInfoMeta(BaseParser):
 
 
 class GetBlockInfo(BaseParser):
-
     def setParams(self, block_file, start, size):
         if type(block_file) is six.text_type:
             block_file = block_file.encode("utf-8")

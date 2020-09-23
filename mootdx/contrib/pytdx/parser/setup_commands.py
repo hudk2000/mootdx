@@ -4,7 +4,6 @@ from pytdx.parser.base import BaseParser
 
 
 class SetupCmd1(BaseParser):
-
     def setup(self):
         self.send_pkg = bytearray.fromhex(
             u'0c 02 18 93 00 01 03 00 03 00 0d 00 01')
@@ -14,7 +13,6 @@ class SetupCmd1(BaseParser):
 
 
 class SetupCmd2(BaseParser):
-
     def setup(self):
         self.send_pkg = bytearray.fromhex(
             u'0c 02 18 94 00 01 03 00 03 00 0d 00 02')
@@ -24,7 +22,6 @@ class SetupCmd2(BaseParser):
 
 
 class SetupCmd3(BaseParser):
-
     def setup(self):
         self.send_pkg = bytearray.fromhex(
             u'0c 03 18 99 00 01 20 00 20 00 db 0f d5'

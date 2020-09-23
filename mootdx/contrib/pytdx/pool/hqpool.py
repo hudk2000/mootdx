@@ -23,7 +23,6 @@ class TdxHqPool_API(object):
     2 1个备选连接，备选连接也连接到服务器，通过心跳包维持连接，当主连接通讯出现问题时，备选连接立刻转化为主连接, 原来的主连接返回ip池，并从ip池中选取新的备选连接
     3 m个ip构成的ip池，可以通过某个方法获取列表，列表可以进行排序，如果备选连接缺少的时候，我们根据排序的优先级顺序将其追加到备选连接
     """
-
     def __init__(self, hq_cls, ippool):
         self.hq_cls = hq_cls
         self.ippool = ippool
@@ -68,7 +67,7 @@ class TdxHqPool_API(object):
         try:
             result = getattr(self.api, method_name)(*args, **kwargs)
             if result is None:
-                log.info("api(%s) call return None" % (method_name,))
+                log.info("api(%s) call return None" % (method_name, ))
         except Exception as e:
             log.info("api(%s) call failed, Exception is %s" %
                      (method_name, str(e)))

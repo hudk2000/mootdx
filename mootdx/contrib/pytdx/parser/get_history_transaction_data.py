@@ -9,7 +9,6 @@ from pytdx.parser.base import BaseParser
 
 
 class GetHistoryTransactionData(BaseParser):
-
     def setParams(self, market, code, start, count, date):
         if type(code) is six.text_type:
             code = code.encode("utf-8")
@@ -24,7 +23,7 @@ class GetHistoryTransactionData(BaseParser):
 
     def parseResponse(self, body_buf):
         pos = 0
-        (num,) = struct.unpack("<H", body_buf[:2])
+        (num, ) = struct.unpack("<H", body_buf[:2])
         pos += 2
         ticks = []
 
@@ -64,4 +63,5 @@ if __name__ == '__main__':
     with api.connect():
         print(
             api.to_df(
-                api.get_history_transaction_data(0, '000001', 0, 10, 20170811)))
+                api.get_history_transaction_data(0, '000001', 0, 10,
+                                                 20170811)))

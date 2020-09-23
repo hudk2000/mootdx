@@ -9,7 +9,6 @@ from pytdx.parser.base import BaseParser
 
 
 class GetMinuteTimeData(BaseParser):
-
     def setParams(self, market, code):
         if type(code) is six.text_type:
             code = code.encode("utf-8")
@@ -59,7 +58,7 @@ Out[40]: (0, 18)
 
     def parseResponse(self, body_buf):
         pos = 0
-        (num,) = struct.unpack("<H", body_buf[:2])
+        (num, ) = struct.unpack("<H", body_buf[:2])
         last_price = 0
         pos += 4
         prices = []

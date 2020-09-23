@@ -13,7 +13,6 @@ class TdxNotAssignVipdocPathException(Exception):
 
 
 class BaseReader(object):
-
     def unpack_records(self, format, data):
         record_struct = struct.Struct(format)
         return (record_struct.unpack_from(data, offset)

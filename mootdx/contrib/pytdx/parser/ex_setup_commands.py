@@ -4,7 +4,6 @@ from pytdx.parser.base import BaseParser
 
 
 class ExSetupCmd1(BaseParser):
-
     def setup(self):
         self.send_pkg = bytearray.fromhex(
             "01 01 48 65 00 01 52 00 52 00 54 24 1f 32 c6 e5"

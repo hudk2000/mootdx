@@ -107,7 +107,7 @@ def get_datetime(category, buffer, pos):
         hour = int(tminutes / 60)
         minute = tminutes % 60
     else:
-        (zipday,) = struct.unpack("<I", buffer[pos:pos + 4])
+        (zipday, ) = struct.unpack("<I", buffer[pos:pos + 4])
 
         year = int(zipday / 10000)
         month = int((zipday % 10000) / 100)
@@ -119,7 +119,7 @@ def get_datetime(category, buffer, pos):
 
 
 def get_time(buffer, pos):
-    (tminutes,) = struct.unpack("<H", buffer[pos:pos + 2])
+    (tminutes, ) = struct.unpack("<H", buffer[pos:pos + 2])
     hour = int(tminutes / 60)
     minute = tminutes % 60
     pos += 2
